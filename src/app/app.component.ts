@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Hero, heroes } from './hero';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  heroes = heroes;
+  hero = this.heroes[0];
+
+  condition = false;
+  logs: string[] = [];
+  showSad = true;
+  status = 'ready';
+
+  trackById(index: number, hero: Hero): number { return hero.id; }
 }
