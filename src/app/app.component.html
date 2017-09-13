@@ -38,7 +38,7 @@
 </ng-template>
 
 <p>template attribute</p>
-<div template="ngIf hero">{{hero.name}}</div>
+<div ng-template="ngIf hero">{{hero.name}}</div>
 
 <hr>
 
@@ -101,7 +101,7 @@
   </div>
 
   <p class="code">&lt;div template="ngFor let hero of heroes; let i=index; let odd=odd; trackBy: trackById" [class.odd]="odd"&gt;</p>
-  <div template="ngFor let hero of heroes; let i=index; let odd=odd; trackBy: trackById" [class.odd]="odd">
+  <div ng-template="ngFor let hero of heroes; let i=index; let odd=odd; trackBy: trackById" [class.odd]="odd">
     ({{i}}) {{hero.name}}
   </div>
 
@@ -126,33 +126,33 @@
 <h4>NgSwitch</h4>
 
 <div [ngSwitch]="hero?.emotion">
-  <happy-hero *ngSwitchCase="'happy'" [hero]="hero"></happy-hero>
-  <sad-hero *ngSwitchCase="'sad'" [hero]="hero"></sad-hero>
-  <confused-hero *ngSwitchCase="'confused'" [hero]="hero"></confused-hero>
-  <unknown-hero *ngSwitchDefault [hero]="hero"></unknown-hero>
+  <app-happy-hero *ngSwitchCase="'happy'" [hero]="hero"></app-happy-hero>
+  <app-sad-hero *ngSwitchCase="'sad'" [hero]="hero"></app-sad-hero>
+  <app-confused-hero *ngSwitchCase="'confused'" [hero]="hero"></app-confused-hero>
+  <app-unknown-hero *ngSwitchDefault [hero]="hero"></app-unknown-hero>
 </div>
 
 <h4>NgSwitch with <i>template</i> attribute</h4>
 <div [ngSwitch]="hero?.emotion">
-  <happy-hero template="ngSwitchCase 'happy'" [hero]="hero"></happy-hero>
-  <sad-hero template="ngSwitchCase 'sad'" [hero]="hero"></sad-hero>
-  <confused-hero template="ngSwitchCase 'confused'" [hero]="hero"></confused-hero>
-  <unknown-hero template="ngSwitchDefault" [hero]="hero"></unknown-hero>
+  <app-happy-hero ng-template="ngSwitchCase 'happy'" [hero]="hero"></app-happy-hero>
+  <app-sad-hero ng-template="ngSwitchCase 'sad'" [hero]="hero"></app-sad-hero>
+  <app-confused-hero ng-template="ngSwitchCase 'confused'" [hero]="hero"></app-confused-hero>
+  <app-unknown-hero ng-template="ngSwitchDefault" [hero]="hero"></app-unknown-hero>
 </div>
 
 <h4>NgSwitch with &lt;ng-template&gt;</h4>
 <div [ngSwitch]="hero?.emotion">
   <ng-template [ngSwitchCase]="'happy'">
-    <happy-hero [hero]="hero"></happy-hero>
+    <app-happy-hero [hero]="hero"></app-happy-hero>
   </ng-template>
   <ng-template [ngSwitchCase]="'sad'">
-    <sad-hero [hero]="hero"></sad-hero>
+    <app-sad-hero [hero]="hero"></app-sad-hero>
   </ng-template>
   <ng-template [ngSwitchCase]="'confused'">
-    <confused-hero [hero]="hero"></confused-hero>
+    <app-confused-hero [hero]="hero"></app-confused-hero>
   </ng-template>
   <ng-template ngSwitchDefault>
-    <unknown-hero [hero]="hero"></unknown-hero>
+    <app-unknown-hero [hero]="hero"></app-unknown-hero>
   </ng-template>
 </div>
 
@@ -167,7 +167,10 @@
 
 <hr>
 
-<h2 id="myUnless">UnlessDirective</h2>
+<h2 id="appUnless">UnlessDirective</h2>
+<div *appUnless="errorCount" class="success"> Congrats! Everything is great! </div>
+
+
 <p>
   The condition is currently
   <span [ngClass]="{ 'a': !condition, 'b': condition, 'unless': true }">{{condition}}</span>.
@@ -175,25 +178,25 @@
     Toggle condition to {{condition ? 'false' : 'true'}}
   </button>
 </p>
-<p *myUnless="condition" class="unless a">
+<p *appUnless="condition" class="unless a">
   (A) This paragraph is displayed because the condition is false.
 </p>
 
-<p *myUnless="!condition" class="unless b">
-  (B) Although the condition is true, this paragraph is displayed because myUnless is set to false.
+<p *appUnless="!condition" class="unless b">
+  (B) Although the condition is true, this paragraph is displayed because appUnless is set to false.
 </p>
 
 
 <h4>UnlessDirective with template</h4>
 
-<p *myUnless="condition">Show this sentence unless the condition is true.</p>
+<p *appUnless="condition">Show this sentence unless the condition is true.</p>
 
-<p template="myUnless condition" class="code unless">
-  (A) &lt;p template="myUnless condition" class="code unless"&gt;
+<p ng-template="appUnless condition" class="code unless">
+  (A) &lt;p template="appUnless condition" class="code unless"&gt;
 </p>
 
-<ng-template [myUnless]="condition">
+<ng-template [appUnless]="condition">
   <p class="code unless">
-    (A) &lt;template [myUnless]="condition"&gt;
+    (A) &lt;template [appUnless]="condition"&gt;
   </p>
 </ng-template>

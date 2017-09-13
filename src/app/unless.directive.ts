@@ -3,7 +3,7 @@ import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 /**
  * Add the template content to the DOM unless the condition is true.
  *
- * If the expression assigned to `myUnless` evaluates to a truthy value
+ * If the expression assigned to `appUnless` evaluates to a truthy value
  * then the templated elements are removed removed from the DOM,
  * the templated elements are (re)inserted into the DOM.
  *
@@ -13,12 +13,12 @@ import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
  *
  * ### Syntax
  *
- * - `<div *myUnless="condition">...</div>`
- * - `<div template="myUnless condition">...</div>`
- * - `<template [myUnless]="condition"><div>...</div></template>`
+ * - `<div *appUnless="condition">...</div>`
+ * - `<div template="appUnless condition">...</div>`
+ * - `<template [appUnless]="condition"><div>...</div></template>`
  *
  */
-@Directive({ selector: '[myUnless]' })
+@Directive({ selector: '[appUnless]' })
 export class UnlessDirective {
     private hasView = false;
 
@@ -26,7 +26,7 @@ export class UnlessDirective {
         private templateRef: TemplateRef<any>,
         private viewContainer: ViewContainerRef) { }
 
-    @Input() set myUnless(condition: boolean) {
+    @Input() set appUnless(condition: boolean) {
         if (!condition && !this.hasView) {
             this.viewContainer.createEmbeddedView(this.templateRef);
             this.hasView = true;
